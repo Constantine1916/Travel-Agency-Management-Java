@@ -17,7 +17,7 @@ public class TravelAgencyInfoController {
     @Autowired
     TravelAgencyInfoDao travelAgencyInfoDao;
 
-    @RequestMapping("/home/travelAgencyInfoManage")
+    @RequestMapping("/travelAgencyInfoManage")
     public String getAllInfos() {
         HashMap<String, Object> data = new HashMap<>();
         List<TravelAgencyInfo> infos = travelAgencyInfoDao.getInfos();

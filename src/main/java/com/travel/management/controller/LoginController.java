@@ -32,10 +32,4 @@ public class LoginController {
         String res_json = JSON.toJSONString(res);
         return res_json;
     }
-
-    @RequestMapping("/editUser")
-    public String editUser(@RequestBody User user){
-        int i = userDao.editUser(user);
-        return i > 0 ? "success" : "error";
-    }
 }
