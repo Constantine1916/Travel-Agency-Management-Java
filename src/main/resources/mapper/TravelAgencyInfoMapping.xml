@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.management.dao.TravelAgencyInfoDao"> 
+    <select id="getInfos" resultType="com.travel.management.bean.TravelAgencyInfo">
+        SELECT * FROM travelagencyinfo
+    </select>
+
+    <insert id="addTravelAgencyInfo">
+        INSERT INTO travelagencyinfo
+        (travelAgencyName,ownerName,cityName)
+        VALUE
+        (#{travelAgencyName},#{ownerName},#{cityName})
+    </insert>
+
+    <update id="editTravelAgencyInfo">
+        UPDATE travelagencyinfo SET travelAgencyName = #{travelAgencyName} ,
+        ownerName = #{ownerName} , cityName = #{cityName} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTravelAgencyInfo">
+        DELETE FROM travelagencyinfo WHERE id = #{id}
+    </delete>
+</mapper>
