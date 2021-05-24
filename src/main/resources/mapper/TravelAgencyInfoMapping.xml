@@ -2,8 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.travel.management.dao.TravelAgencyInfoDao"> 
-    <select id="getInfos" resultType="com.travel.management.bean.TravelAgencyInfo">
+    <select id="getAllInfos" resultType="com.travel.management.bean.TravelAgencyInfo">
         SELECT * FROM travelagencyinfo
+    </select>
+
+    <select id="queryInfos" resultType="com.travel.management.bean.TravelAgencyInfo">
+        SELECT * FROM travelagencyinfo
+        <where>
+            <if test="travelAgency.travelAgencyName !=null and travelAgency.travelAgencyName != ''">
+                AND travelAgencyName like CONCAT('%',#{travelAgency.travelAgencyName},'%')
+            </if>
+            <if test="travelAgency.ownerName !=null and travelAgency.ownerName != ''">
+                AND ownerName like CONCAT('%',#{travelAgency.ownerName},'%')
+            </if>
+            <if test="travelAgency.cityName !=null and travelAgency.cityName != ''">
+                AND cityName = #{travelAgency.cityName}
+            </if>
+        </where>
     </select>
 
     <insert id="addTravelAgencyInfo">

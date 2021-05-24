@@ -20,7 +20,7 @@ public class TravelAgencyInfoController {
     @RequestMapping("/travelAgencyInfoManage")
     public String getAllInfos() {
         HashMap<String, Object> data = new HashMap<>();
-        List<TravelAgencyInfo> infos = travelAgencyInfoDao.getInfos();
+        List<TravelAgencyInfo> infos = travelAgencyInfoDao.getAllInfos();
 
         if (infos!=null){
             data.put("infos",infos);
@@ -31,6 +31,20 @@ public class TravelAgencyInfoController {
         String s = JSON.toJSONString(data);
         return s;
     }
+
+    @RequestMapping("/queryInfos")
+    public String getQuryInfos(@RequestBody TravelAgencyInfo travelAgencyInfo) {
+        List<TravelAgencyInfo> queryInfosData = travelAgencyInfoDao.queryInfos(travelAgencyInfo);
+        HashMap<String, Object> res = new HashMap<>();
+        if (queryInfosData!=null){
+            res.put("data",queryInfosData);
+            res.put("flag",200);
+        }else {
+            res.put("flag",404);
+        }
+        String res_string = JSON.toJSONString(res);
+        return res_string;
+    };
 
     @RequestMapping("/addTravelAgencyInfo")
     public String addTravelAgencyInfo(@RequestBody TravelAgencyInfo travelAgencyInfo) {
