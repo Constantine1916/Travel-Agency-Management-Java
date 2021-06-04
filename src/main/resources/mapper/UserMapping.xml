@@ -7,6 +7,10 @@
         username=#{username} AND password=#{password}
     </select>
 
+    <select id="getUserInfos" resultType="com.travel.management.bean.User">
+        SELECT * FROM easyuser WHERE id = #{id}
+    </select>
+
     <update id="editUser">
         UPDATE easyuser SET password = #{password} , nickname = #{nickname}, email = #{email},
         phoneNumber = #{phoneNumber} , home = #{home} WHERE id = #{id}

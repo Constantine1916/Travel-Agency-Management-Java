@@ -23,17 +23,13 @@ public class LoginController {
         HashMap<String, Object> res = new HashMap<>();
         if (us!=null){
             flag = "ok";
+            res.put("id", us.getId());
+            res.put("user",user);
+        } else {
+            flag = "error";
         }
         res.put("flag",flag);
-        res.put("id", us.getId());
-        res.put("user",user);
         String res_json = JSON.toJSONString(res);
         return res_json;
-    }
-
-    @RequestMapping("/editUser")
-    public String editUser(@RequestBody User user){
-        int i = userDao.editUser(user);
-        return i > 0 ? "success" : "error";
     }
 }
